@@ -6,7 +6,7 @@
     ViewData["Title"] = "List of categories";
 }
 
-@*Wrtie code*@
+
 
 <h1>Welcome to Categories View</h1>
 
@@ -25,12 +25,13 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>                    
+                    <tr class="text-center">                    
                         <td class="align-middle">
                             <img class="rounded-circle" src = "@item.ProfilePictureUrl" style="max-width:150px;"/>
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem => item.Name)
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
                         </td>
                         
                         <td class="align-middle">
@@ -58,4 +59,3 @@
     </div>
 
 </div>
-

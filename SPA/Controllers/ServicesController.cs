@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SPA.Data;
 
 namespace SPA.Controllers
@@ -12,10 +13,10 @@ namespace SPA.Controllers
 
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _context.Services.ToList();
-            return View(data);
+            var allServices = await _context.Services.ToListAsync();
+            return View(allServices);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SPA.Data;
+using SPA.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(
     builder.Configuration["ConnectionStrings:SPAConnection"]));
 
+//Configure services
 
+builder.Services.AddScoped<IEmployeesService, EmployeesService>();
 
 
 // Add services to the container.

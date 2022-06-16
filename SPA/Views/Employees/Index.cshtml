@@ -25,7 +25,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>                    
+                    <tr class="text-center">                    
                         <td class="align-middle">
                             <img class="rounded-circle" src = "@item.ProfilePictureUrl" style="max-width:150px;"/>
                         </td>
@@ -52,10 +52,13 @@
                 
             </tbody>
             <tr>
-                <td></td>
-            </tr>
+ 
         </table>
     </div>
 
+</div>
+
+<div style= "position: fixed; right: 25px; bottom: 100px;"  class="text-white">
+    <a asp-controller="Employees", asp-action="Create" class="btn btn-success"><i class="bg-info bi-plus-circle"></i>Add new</a>
 </div>
 
