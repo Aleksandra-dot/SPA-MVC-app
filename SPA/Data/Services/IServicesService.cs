@@ -2,17 +2,17 @@
 
 namespace SPA.Data.Services
 {
-    public interface IServiceService
+    public interface IServicesService
     {
 
         Task<IEnumerable<Service>> GetAll();
-        Service GetById(int id);
+        Task<Service> GetById(int id);
 
-        void Add(Employee employee);
+        Task Add(Service service);
         Employee Update(int id, Employee employee);
 
         void Delete(int id);
 
-        Task<IEnumerable<Service>> GetByCategoryId();
+        Task<IEnumerable<Service>> GetByCategoryId(int id);
     }
 }

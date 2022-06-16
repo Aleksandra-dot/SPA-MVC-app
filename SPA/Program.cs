@@ -13,6 +13,7 @@ options.UseSqlServer(
 //Configure services
 
 builder.Services.AddScoped<IEmployeesService, EmployeesService>();
+builder.Services.AddScoped<IServicesService, ServicesService>();
 
 
 // Add services to the container.
