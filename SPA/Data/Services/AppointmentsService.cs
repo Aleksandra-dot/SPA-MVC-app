@@ -14,7 +14,7 @@ namespace SPA.Data.Services
             _context = context;
         }
 
-        public async Task AddNewAppointmentAsync(NewAppointment data)
+        public async Task AddAsync(NewAppointment data)
         {
             var newAppointment = new Appointment()
             {

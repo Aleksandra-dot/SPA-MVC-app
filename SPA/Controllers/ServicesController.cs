@@ -51,7 +51,7 @@ namespace SPA.Controllers
             };
 
             var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
-            ViewBag.Cinemas = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+            ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
 
             return View(response);
         }
@@ -65,7 +65,7 @@ namespace SPA.Controllers
             {
                 var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
 
-                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
 
                 return View(service);
             }
@@ -79,7 +79,7 @@ namespace SPA.Controllers
         {
             var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
 
-            ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+            ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace SPA.Controllers
             {
                 var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
 
-                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
 
                 return View(service);
             }

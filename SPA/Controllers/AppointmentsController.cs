@@ -28,9 +28,9 @@ namespace SPA.Controllers
         {
             var appointmentDropdownsData = await appointmentsService.GetNewAppointmentDropdownsValues();
 
-            ViewBag.Clients = new SelectList(appointmentDropdownsData.Clients, "Id", "Name");
-            ViewBag.Employees = new SelectList(appointmentDropdownsData.Employees, "Id", "FullName");
-            ViewBag.Services = new SelectList(appointmentDropdownsData.Services, "Id", "FullName");
+            ViewBag.Clients = new SelectList(appointmentDropdownsData.Clients, "Id", "LastName");
+            ViewBag.Employees = new SelectList(appointmentDropdownsData.Employees, "Id", "Name");
+            ViewBag.Services = new SelectList(appointmentDropdownsData.Services, "Id", "Name");
 
             return View();
         }
@@ -40,16 +40,16 @@ namespace SPA.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var movieDropdownsData = await appointmentsService.GetNewAppointmentDropdownsValues();
+                var appointmentDropdownsData = await appointmentsService.GetNewAppointmentDropdownsValues();
 
-                ViewBag.Clients = new SelectList(movieDropdownsData.Clients, "Id", "Name", "LastName");
-                ViewBag.Employees = new SelectList(movieDropdownsData.Employees, "Id", "Name", "LastName");
-                ViewBag.Services = new SelectList(movieDropdownsData.Services, "Id", "Name");
+                ViewBag.Clients = new SelectList(appointmentDropdownsData.Clients, "Id", "LastName");
+                ViewBag.Employees = new SelectList(appointmentDropdownsData.Employees, "Id", "Name");
+                ViewBag.Services = new SelectList(appointmentDropdownsData.Services, "Id", "Name");
 
                 return View(appointment);
             }
 
-            await appointmentsService.AddNewAppointmentAsync(appointment);
+            await appointmentsService.AddAsync(appointment);
             return RedirectToAction(nameof(Index));
         }
         //Get: Employees/Edit
@@ -79,11 +79,11 @@ namespace SPA.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var movieDropdownsData = await appointmentsService.GetNewAppointmentDropdownsValues();
+                var appointmentDropdownsData = await appointmentsService.GetNewAppointmentDropdownsValues();
 
-                ViewBag.Clients = new SelectList(movieDropdownsData.Clients, "Id", "Name", "LastName");
-                ViewBag.Employees = new SelectList(movieDropdownsData.Employees, "Id", "Name", "LastName");
-                ViewBag.Services = new SelectList(movieDropdownsData.Services, "Id", "Name");
+                ViewBag.Clients = new SelectList(appointmentDropdownsData.Clients, "Id","LastName");
+                ViewBag.Employees = new SelectList(appointmentDropdownsData.Employees, "Id", "Name");
+                ViewBag.Services = new SelectList(appointmentDropdownsData.Services, "Id", "Name");
                 return View(appointment);
             }
 
@@ -100,8 +100,7 @@ namespace SPA.Controllers
         //Get: Employees/Delete/1
         public async Task<IActionResult> Delete(int id)
         {
-            var appointmentDetails = await appointmentsService.GetByIdAsync(id);
-            if (appointmentDetails == null) return View("Empty");
+            var appointmentDetails = await appointmentsService.GetAppointmentByIdAsync(id);
             return View(appointmentDetails);
         }
 

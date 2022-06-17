@@ -9,7 +9,7 @@ namespace SPA.Data.Services
         Task<Appointment> GetAppointmentByIdAsync(int id);
 
         Task<NewAppointmentDropdowns> GetNewAppointmentDropdownsValues();
-        Task AddNewAppointmentAsync(NewAppointment data);
+        Task AddAsync(NewAppointment data);
         Task UpdateAppointmentAsync(NewAppointment data);
     }
 }
