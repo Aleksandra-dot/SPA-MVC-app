@@ -1,0 +1,96 @@
+﻿@*Define model*@
+@model Service
+
+@*Define ViewData@**@
+@{
+    ViewData["Title"] = "Service";
+}
+
+@*Wrtie code*@
+
+<span class="border">
+  <div class="row text-center justify-content-md-center">
+    <div class="col"></div>
+    <div class="col col-lg-2">
+     <img src = "@Model.ProfilePictureUrl"/>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row text-center justify-content-md-center">
+    <div class="col"></div>
+    <div class="col col-lg-2">
+     @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row text-center justify-content-md-center">
+    <div class="col col-lg-2">
+      @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="col col-lg-2">
+      @Html.DisplayNameFor(model => model.Duration)
+    </div>
+  </div>
+  <div class="row text-center justify-content-md-center">
+    <div class="col col-lg-2">
+      @Html.DisplayFor(model => model.Price)
+    </div>
+    <div class="col col-lg-2">
+      @Html.DisplayFor(model => model.Duration)
+    </div>
+  </div>
+  <div class="row text-center justify-content-md-center">  
+    <div class="col col-lg-2">
+      @Html.DisplayFor(model => model.Description)
+    </div>
+  </div>
+ </span>
+
+
+@*<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th> @Html.DisplayNameFor(model => model.ProfilePictureUrl)</th>
+                    <th> @Html.DisplayNameFor(model => model.Name)</th>
+                    <th> @Html.DisplayNameFor(model => model.Price)</th>
+                    <th> @Html.DisplayNameFor(model => model.Duration)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                
+     
+                    <tr class="text-center">                     
+                        <td class="align-middle">
+                            <img class="rounded-circle" src = "@Model.ProfilePictureUrl" style="max-width:150px;"/>
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model => model.Name)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model=>model.Price)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model => model.Duration)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                        
+                        
+                    </tr>
+                }
+                
+            </tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>*@
+

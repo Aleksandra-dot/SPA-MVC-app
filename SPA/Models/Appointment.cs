@@ -1,4 +1,5 @@
 ﻿using SPA.Data.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SPA.Models
@@ -6,7 +7,8 @@ namespace SPA.Models
     public class Appointment:IEntityBase
     {
 
-        public int Id { get; set; } 
+        public int Id { get; set; }
+        [Display(Name ="Date")]
         public DateTime Date { get; set; }
 
 
@@ -18,12 +20,14 @@ namespace SPA.Models
         
         public int EmployeeId { get; set; }
         [ForeignKey("EmployeeId")]
+        [Display(Name = "Employee")]
         public Employee Employee { get; set; }
 
         //Client
 
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]
+        [Display(Name = "Client")]
         public Client Client { get; set; }
 
 

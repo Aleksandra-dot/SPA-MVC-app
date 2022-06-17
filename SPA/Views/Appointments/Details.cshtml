@@ -1,0 +1,57 @@
+﻿@model Appointment
+
+@{
+    ViewData["Title"] = "Appointment details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                Appointment
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text"><b>Date: </b>@Model.Date.ToString()</p>
+                        <p class="card-text">
+                            <b>Client: </b>
+                            <a asp-controller="Clients" asp-action="Details" asp-route-id="@Model.ClientId">
+                                @Model.Client.Name
+                                @Model.Client.LastName
+                                @Model.Client.PhoneNumber
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            <b>Employee: </b>
+                            <a asp-controller="Employees" asp-action="Details" asp-route-id="@Model.EmployeeId">
+                                @Model.Employee.Name
+                                @Model.Employee.LastName
+                            </a>
+                            <hr />
+                        
+                        <p class="card-text">
+                            <b>Services: </b>
+                            
+                                @foreach (var service in Model.Service_Appointments)
+                                {
+                                    <div class="column text-center">
+                                        <a asp-controller="Services" asp-action="Details" asp-route-id="@service.ServiceId">@service.Service.Name</a>
+                                    </div>
+                                }
+                            
+                        </p>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

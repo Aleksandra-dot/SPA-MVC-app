@@ -1,0 +1,62 @@
+﻿@*Define model*@
+@model IEnumerable<Client>
+
+@*Define ViewData@**@
+@{
+    ViewData["Title"] = "List of clients";
+}
+
+@*Wrtie code*@
+
+<h1>Welcome to Services View</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th> @Html.DisplayNameFor(model => model.Name)</th>
+                    <th> @Html.DisplayNameFor(model => model.LastName)</th>
+                    <th> @Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">                   
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" asp-controller="Clients" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil-square"></i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger text-white asp-controller="Clients" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+            <tr>
+ 
+        </table>
+    </div>
+
+</div>
+
+
+@await Html.PartialAsync("_CreateItem", "Clients") 
+

@@ -59,7 +59,15 @@ namespace SPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Get: Employees/Delete/1
+        //Get: Clients/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var clientDetails = await clientsService.GetByIdAsync(id);
+            if (clientDetails == null) return View("NotFound");
+            return View(clientDetails);
+        }
+
+        //Get: Clients/Delete/1
         public async Task<IActionResult> Delete(int id)
         {
             var clientDetails = await clientsService.GetByIdAsync(id);

@@ -16,6 +16,7 @@ builder.Services.AddScoped<IEmployeesService, EmployeesService>();
 builder.Services.AddScoped<IServicesService, ServicesService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IClientsService, ClientsService>();
+builder.Services.AddScoped<IAppointmentsService, AppointmentsService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

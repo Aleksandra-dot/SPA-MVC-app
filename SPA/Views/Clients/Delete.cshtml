@@ -1,7 +1,7 @@
-﻿@model Employee
+﻿@model Client
 
 @{
-    ViewData["Title"] = "Delete employee";
+    ViewData["Title"] = "Delete client";
 }
 
 <div class="row text">
@@ -14,11 +14,7 @@
                     <div class="form-group text-center">
                         <img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicturePreview" />
                     </div>
-                    <div class="form-group">
-                        <label asp-for="ProfilePictureUrl" class="control-label"></label>
-                        <input asp-for="ProfilePictureUrl" class="form-control" readonly />
-                        <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
-                    </div>
+                    
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" readonly />
@@ -28,6 +24,11 @@
                         <label asp-for="LastName" class="control-label"></label>
                         <input asp-for="LastName" class="form-control" readonly />
                         <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" readonly />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
@@ -42,11 +43,3 @@
     </div>
 </div>
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            var output = document.getElementById('ProfilePicturePreview');
-            output.src = $("#ProfilePictureURL").val();
-        })
-    </script>
-}

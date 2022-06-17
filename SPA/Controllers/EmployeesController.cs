@@ -54,6 +54,13 @@ namespace SPA.Controllers
             await employeesService.UpdateAsync(id, employee);
             return RedirectToAction(nameof(Index));
         }
+        //GetL Employees/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var employeeDetails = await employeesService.GetByIdAsync(id);
+            if (employeeDetails == null) return View("NotFound");
+            return View(employeeDetails);
+        }
 
         //Get: Employees/Delete/1
         public async Task<IActionResult> Delete(int id)

@@ -30,7 +30,8 @@ namespace SPA.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var serviceDetails = await servicesService.GetById(id);
+            var serviceDetails = await servicesService.GetByIdAsync(id);
+            if (serviceDetails == null) return View("NotFound");
             return View(serviceDetails);
         }
 
@@ -89,7 +90,7 @@ namespace SPA.Controllers
             {
                 var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
 
-                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
+                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
 
                 return View(service);
             }
@@ -98,6 +99,8 @@ namespace SPA.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
         
+
     }
 }
