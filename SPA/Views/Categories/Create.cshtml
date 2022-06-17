@@ -1,13 +1,13 @@
-﻿@model Employee
+﻿@model Category
 @{
-    ViewData["Title"] = "Add a new employee";
+    ViewData["Title"] = "Add a new category";
 
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Add a New Employee</h1>
+            <h1>Add a New Category</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -27,12 +27,6 @@
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="LastName" class="control-label"></label>
-                        <input asp-for="LastName" class="form-control" />
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>

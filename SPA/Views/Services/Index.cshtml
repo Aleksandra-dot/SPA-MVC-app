@@ -16,7 +16,7 @@
         <table class="table">
             <thead>
                 <tr class="text-center">
-                    <th> @Html.DisplayNameFor(model => model.ProfilePictureUrl)</th>
+                    <th> </th>
                     <th> @Html.DisplayNameFor(model => model.Name)</th>
                     <th> @Html.DisplayNameFor(model => model.Price)</th>
                     <th> @Html.DisplayNameFor(model => model.Duration)</th>
@@ -42,11 +42,11 @@
                         </td>
                         
                         <td class="align-middle">
-                            <a class="btn btn-outline-primary">
+                            <a class="btn btn-outline-primary" asp-controller="Services" asp-action="Edit" asp-route-id="@item.Id">
                                 <i class="bi bi-pencil-square"></i>
                                 Edit
                             </a>
-                            <a class="btn btn-outline-info" asp-controller="Services" asp-action="Details" asp-route-id="@item.ServiceId">
+                            <a class="btn btn-outline-info" asp-controller="Services" asp-action="Details" asp-route-id="@item.Id">
                                 <i class="bi bi-eye"></i>
                                 Details
                             </a>
@@ -67,3 +67,4 @@
 
 </div>
 
+@await Html.PartialAsync("_CreateItem", "Services") 

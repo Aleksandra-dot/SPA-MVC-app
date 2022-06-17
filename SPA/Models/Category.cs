@@ -7,7 +7,7 @@ namespace SPA.Models
         [Key]
         public int CategoryId { get; set; }
 
-        [Display(Name = "")]
+        [Display(Name = "ProfilePictureUrl")]
         public string ProfilePictureUrl { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }

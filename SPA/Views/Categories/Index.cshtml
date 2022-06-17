@@ -16,7 +16,7 @@
         <table class="table">
             <thead>
                 <tr class="text-center">
-                    <th> @Html.DisplayNameFor(model => model.ProfilePictureUrl)</th>
+                    <th> </th>
                     <th> @Html.DisplayNameFor(model => model.Name)</th>
                     <th>Actions</th>
                 </tr>
@@ -59,3 +59,4 @@
     </div>
 
 </div>
+@await Html.PartialAsync("_CreateItem", "Categories") 

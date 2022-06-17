@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SPA.Data;
 using SPA.Data.Services;
+using SPA.Data.ViewModels;
 
 namespace SPA.Controllers
 {
@@ -29,8 +31,40 @@ namespace SPA.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var serviceDetails = await servicesService.GetById(id);
-            if (serviceDetails == null) return View("Empty");
             return View(serviceDetails);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var serviceEdit = await servicesService.GetById(id);
+            if (serviceEdit == null) return View("Empty");
+            return View(serviceEdit);
+        }
+
+        //GET: Services/Create
+        public async Task<IActionResult> Create()
+        {
+            var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
+
+            ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewService service)
+        {
+            if (!ModelState.IsValid)
+            {
+                var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
+
+                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "Id", "Name");
+
+                return View(service);
+            }
+
+            await servicesService.AddAsync(service);
+            return RedirectToAction(nameof(Index));
+
         }
         
     }
