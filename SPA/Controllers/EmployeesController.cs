@@ -16,7 +16,7 @@ namespace SPA.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allEmployees = await employeesService.GetAll();
+            var allEmployees = await employeesService.GetAllAsync();
             return View(allEmployees);
         }
 
@@ -34,10 +34,44 @@ namespace SPA.Controllers
             {
                 return View(employee);
             }
-            employeesService.Add(employee);
+            await employeesService.AddAsync(employee);
             return RedirectToAction(nameof(Index));
 
         }
-        
+
+        //Get: Employees/Edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var employeeDetails = await employeesService.GetByIdAsync(id);
+            if (employeeDetails == null) return View("NotFound");
+            return View(employeeDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePictureUrl,Name,LastName")] Employee employee)
+        {
+            if (!ModelState.IsValid) return View(employee);
+            await employeesService.UpdateAsync(id, employee);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Get: Employees/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var employeeDetails = await employeesService.GetByIdAsync(id);
+            if (employeeDetails == null) return View("Empty");
+            return View(employeeDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var employeeDetails = await employeesService.GetByIdAsync(id);
+            if (employeeDetails == null) return View("Empty");
+
+            await employeesService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

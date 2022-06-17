@@ -5,11 +5,11 @@ using SPA.Models;
 
 namespace SPA.Data.Services
 {
-    public class ServicesService : IServicesService
+    public class ServicesService :EntityBaseRepository<Service>, IServicesService
 
     { 
         private readonly AppDbContext _context;
-        public ServicesService(AppDbContext context)
+        public ServicesService(AppDbContext context) :base(context)
             {
 
                  _context = context;
@@ -31,11 +31,6 @@ namespace SPA.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Service>> GetAll()
         {
             var result = await _context.Services.ToListAsync();
@@ -48,10 +43,7 @@ namespace SPA.Data.Services
             return result;
         }
 
-        public Employee Update(int id, Employee employee)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public async Task<IEnumerable<Service>> GetByCategoryId(int id)
         {
@@ -65,27 +57,29 @@ namespace SPA.Data.Services
         {
             var response = new NewServiceDropdowns()
             {
-                Categories = await _context.Categories.OrderBy(n => n.CategoryId).ToListAsync()
+                Categories = await _context.Categories.OrderBy(n => n.Id).ToListAsync()
             };
             return response;
-
         }
 
-       
 
-        public Task Update(int id, Service entity)
+        public async Task UpdateAsync(NewService data)
         {
-            throw new NotImplementedException();
+            var dbService = await _context.Services.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if(dbService != null)
+            {
+                dbService.Name = data.Name;
+                dbService.Price = data.Price;
+                dbService.ProfilePictureUrl = data.ProfilePictureUrl;
+                dbService.Description = data.Description;
+                dbService.Duration = data.Duration;
+                dbService.CategoryId = data.CategoryId;
+            }
+
+            await _context.SaveChangesAsync();
         }
 
-        Task IEntityBaseRepository<Service>.Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*public Task AddAsync(Service entity)
-        {
-            throw new NotImplementedException();
-        }*/
+        
     }
 }

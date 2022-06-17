@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SPA.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace SPA.Models
 {
-    public class Category
+    public class Category:IEntityBase
     {
         [Key]
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "ProfilePictureUrl")]
         public string ProfilePictureUrl { get; set; }

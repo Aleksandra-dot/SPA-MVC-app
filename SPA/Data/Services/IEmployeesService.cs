@@ -1,16 +1,17 @@
-﻿using SPA.Models;
+﻿using SPA.Data.Base;
+using SPA.Models;
 
 namespace SPA.Data.Services
 {
-    public interface IEmployeesService
+    public interface IEmployeesService :IEntityBaseRepository<Employee>
     {
-
+/*
         Task<IEnumerable<Employee>> GetAll();
-        Employee GetById(int id);
+        Task<Employee> GetById(int id);
 
         void Add(Employee employee);
-        Employee Update(int id, Employee employee); 
+        Task<Employee> Update(int id, Employee employee); 
 
-        void Delete(int id);    
+        Task DeleteAsync(int id);  */  
     }
 }

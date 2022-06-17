@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using SPA.Models;
 
 namespace SPA.Data
@@ -36,6 +37,7 @@ namespace SPA.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Service_Appointment> Service_Appointments { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
 
     }

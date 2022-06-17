@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SPA.Data.ViewModels
 {
-    public class NewService
+    public class NewService: IEntityBase
     {
         public int Id { get; set; }
 

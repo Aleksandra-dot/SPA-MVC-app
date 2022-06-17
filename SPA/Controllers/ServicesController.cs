@@ -36,9 +36,41 @@ namespace SPA.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var serviceEdit = await servicesService.GetById(id);
-            if (serviceEdit == null) return View("Empty");
-            return View(serviceEdit);
+            var serviceDetails = await servicesService.GetById(id);
+            if (serviceDetails == null) return View("Empty");
+
+            var response = new NewService()
+            {
+                ProfilePictureUrl = serviceDetails.ProfilePictureUrl,
+                Name = serviceDetails.Name,
+                Description = serviceDetails.Description,
+                Duration = serviceDetails.Duration,
+                Price = serviceDetails.Price,
+                CategoryId = serviceDetails.CategoryId
+            };
+
+            var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
+            ViewBag.Cinemas = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewService service)
+        {
+            if (id != service.Id) return View("Empty");
+
+            if (!ModelState.IsValid)
+            {
+                var serviceDropdownsData = await servicesService.GetNewServiceDropdownsValues();
+
+                ViewBag.Categories = new SelectList(serviceDropdownsData.Categories, "CategoryId", "Name");
+
+                return View(service);
+            }
+
+            await servicesService.UpdateAsync(service);
+            return RedirectToAction(nameof(Index));
         }
 
         //GET: Services/Create

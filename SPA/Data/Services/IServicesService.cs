@@ -12,8 +12,7 @@ namespace SPA.Data.Services
 
         Task<NewServiceDropdowns> GetNewServiceDropdownsValues();
         Task AddAsync(NewService data);
-        Employee Update(int id, Employee employee);
-
+        Task UpdateAsync(NewService data);
 
         Task<IEnumerable<Service>> GetByCategoryId(int id);
     }

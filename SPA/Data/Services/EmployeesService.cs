@@ -1,27 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using SPA.Data.Base;
 using SPA.Models;
 
 namespace SPA.Data.Services
 {
-    public class EmployeesService : IEmployeesService
+    public class EmployeesService :EntityBaseRepository<Employee>, IEmployeesService
     {
 
         private readonly AppDbContext _context;
-        public EmployeesService(AppDbContext context)
+        public EmployeesService(AppDbContext context) : base(context)
         {
 
             _context = context;
         }
 
-        public  void Add(Employee employee)
+        /*public  void Add(Employee employee)
         {
              _context.Employees.Add(employee);   
             _context.SaveChanges(); 
         }
 
-        public void Delete(int id)
+        public async void DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Employees.FirstOrDefaultAsync(n => n.Id == id);
+            _context.Employees.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Employee>> GetAll()
@@ -30,14 +32,17 @@ namespace SPA.Data.Services
             return result;
         }
 
-        public Employee GetById(int id)
+        public async Task<Employee> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Employees.FirstOrDefaultAsync(n => n.Id == id);
+            return result;
         }
 
-        public Employee Update(int id, Employee employee)
+        public async Task<Employee> Update(int id, Employee employee)
         {
-            throw new NotImplementedException();
-        }
+            _context.Update(employee);
+            await _context.SaveChangesAsync();
+            return employee;
+        }*/
     }
 }

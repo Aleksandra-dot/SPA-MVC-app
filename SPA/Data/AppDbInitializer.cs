@@ -160,6 +160,36 @@ namespace SPA.Data
                         context.SaveChanges();
 
                     }
+
+                    //Client
+                    if (!context.Clients.Any())
+                    {
+                        context.Clients.AddRange(
+
+                            new Client
+                            {
+                                Name = "Paulina",
+                                LastName = "Kotarska",
+                                PhoneNumber = "245678432"
+                            },
+                            new Client
+                            {
+                                Name = "Oliwia",
+                                LastName = "Mlek",
+                                PhoneNumber = "985641247"
+                            },
+                            new Client
+                            {
+                                Name = "Marcin",
+                                LastName = "Pawelski",
+                                PhoneNumber = "985428752"
+                            }
+
+                            );
+                        context.SaveChanges();
+
+                    }
+
                     //Appointment
                     if (!context.Appointments.Any())
                     {
@@ -169,16 +199,19 @@ namespace SPA.Data
                             {
                                 Date = DateTime.Parse("2022-06-28"),
                                 EmployeeId = 1,
+                                ClientId = 1
                             },
                             new Appointment
                             {
                                 Date = DateTime.Parse("2022-06-20"),
                                 EmployeeId = 2,
+                                ClientId = 3
                             },
                             new Appointment
                             {
                                 Date = DateTime.Parse("2022-06-25"),
                                 EmployeeId = 2,
+                                ClientId = 2
 
                             }
 
@@ -194,27 +227,27 @@ namespace SPA.Data
                             new Service_Appointment
                             {
                                 ServiceId = 1,
-                                AppointmentId = 1,
+                                AppointmentId = 4,
                             },
                             new Service_Appointment
                             {
                                 ServiceId = 3,
-                                AppointmentId = 1,
+                                AppointmentId = 4,
                             },
                             new Service_Appointment
                             {
                                 ServiceId = 4,
-                                AppointmentId = 2,
+                                AppointmentId = 5,
                             },
                             new Service_Appointment
                             {
                                 ServiceId = 1,
-                                AppointmentId = 3,
+                                AppointmentId = 6,
                             },
                             new Service_Appointment
                             {
                                 ServiceId = 8,
-                                AppointmentId = 3,
+                                AppointmentId = 6,
                             }
                             );
                         context.SaveChanges();

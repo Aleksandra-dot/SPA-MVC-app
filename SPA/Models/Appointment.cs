@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SPA.Data.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SPA.Models
 {
-    public class Appointment
+    public class Appointment:IEntityBase
     {
 
         public int Id { get; set; } 
@@ -18,6 +19,13 @@ namespace SPA.Models
         public int EmployeeId { get; set; }
         [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
+
+        //Client
+
+        public int ClientId { get; set; }
+        [ForeignKey("ClientId")]
+        public Client Client { get; set; }
+
 
     }
 }

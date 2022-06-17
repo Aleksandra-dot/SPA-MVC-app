@@ -8,10 +8,10 @@ namespace SPA.Data.Base
 {
     public interface IEntityBaseRepository<T> where T: class, IEntityBase, new()
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetById(int id);
-        //Task AddAsync(T entity);
-        Task Update(int id, T entity);
-        Task Delete(int id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task AddAsync(T entity);
+        Task UpdateAsync(int id, T entity);
+        Task DeleteAsync(int id);
     }
 }
