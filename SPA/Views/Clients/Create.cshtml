@@ -6,17 +6,24 @@
 
 <div class="row text">
     <div class="col-md-8 offset-2">
-        <p>
+        @if (!User.IsInRole("Admin"))
+        {
+            <p>
             <h1>Leave your contact details and we will get in touch to schedule your visit</h1>
-        </p>
+
+            </p>
+            <div class="form-group text-center">
+                        <img src="~/Images/contact.jpg" />
+             </div>
+            
+        }
+        
         <div class="row">
             <div class="col-md-8 offset-2">
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <div class="form-group text-center">
-                        <img src="~/Images/contact.jpg" />
-                    </div>
+                    
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" />

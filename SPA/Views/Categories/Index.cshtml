@@ -18,14 +18,17 @@
                 <tr class="text-center">
                     <th> </th>
                     <th> @Html.DisplayNameFor(model => model.Name)</th>
-                    <th>Actions</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>Actions</th>
+                    }
                 </tr>
 
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="text-center">                    
+                    <tr>                    
                         <td class="align-middle">
                             <img class="rounded-circle" src = "@item.ProfilePictureUrl" style="max-width:150px;"/>
                         </td>
@@ -33,8 +36,9 @@
                             @Html.DisplayFor(modelItem => item.Name)
                              <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="GetByCategoryId" asp-route-id="@item.Id">Services</a>
                         </td>
-                        
-                        <td class="align-middle">
+                        @if (User.IsInRole("Admin"))
+                        {
+                             <td class="align-middle">
                             <a class="btn btn-outline-primary">
                                 <i class="bi bi-pencil-square"></i>
                                 Edit
@@ -48,6 +52,10 @@
                                 Delete
                             </a>
                         </td>
+                            
+                        }
+
+                       
                     </tr>
                 }
                 
@@ -57,6 +65,14 @@
             </tr>
         </table>
     </div>
+    
 
 </div>
 @await Html.PartialAsync("_CreateItem", "Categories") 
+<div style="position: fixed; left: 25px; bottom: 100px;" class="text-white">
+        <a asp-controller="Services" asp-action="Index" class="btn btn-outline-primary">
+            <i class="bi bi-plus-circle"></i> 
+            
+            See all Services
+        </a>
+</div>

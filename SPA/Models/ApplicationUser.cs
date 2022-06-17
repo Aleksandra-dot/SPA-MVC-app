@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SPA.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser:IdentityUser
     {
         [Display(Name = "Full name")]
         public string FullName { get; set; }
