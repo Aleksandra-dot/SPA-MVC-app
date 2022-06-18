@@ -14,6 +14,10 @@ namespace SPA.Controllers
 
             categoriesService = service;
         }
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async  Task<IActionResult>Index()
         {
             var allCategories = await  categoriesService.GetAllAsync();
@@ -25,7 +29,11 @@ namespace SPA.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Metoda - tworzenie kategorii
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns> Zwraca widok kategorii </returns>
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Name, ProfilePictureUrl")] Category category)
         {
@@ -38,14 +46,23 @@ namespace SPA.Controllers
 
         }
 
-        //Get: Categories/Edit
+        /// <summary>
+        /// Metoda - edytowanie kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok kategorii </returns>
         public async Task<IActionResult> Edit(int id)
         {
             var categoryDetails = await categoriesService.GetByIdAsync(id);
             if (categoryDetails == null) return View("NotFound");
             return View(categoryDetails);
         }
-
+        /// <summary>
+        /// Metoda - edycja kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="category"></param>
+        /// <returns> Zwraca widok kategorii</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePictureUrl,Name")] Category category)
         {
@@ -54,14 +71,22 @@ namespace SPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Get: Employees/Delete/1
+        /// <summary>
+        /// Metoda - usuwanie kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok usuwanej kategorii</returns>
         public async Task<IActionResult> Delete(int id)
         {
             var categoryDetails = await categoriesService.GetByIdAsync(id);
             if (categoryDetails == null) return View("Empty");
             return View(categoryDetails);
         }
-
+        /// <summary>
+        /// Metoda - walidacja usuniętej kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok kategorii</returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -16,13 +16,20 @@ namespace SPA.Controllers
             appointmentsService = service;
         }
 
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async Task<IActionResult> Index()
         {
             var allAppointments = await appointmentsService.GetAllAsync();
             return View(allAppointments);
         }
 
-        //Get: Appointment/Create
+        /// <summary>
+        /// Tworzenie wizyty
+        /// </summary>
+        /// <returns> Zwraca widok dropdown listy</returns>
 
         public async Task<IActionResult> Create()
         {
@@ -36,6 +43,10 @@ namespace SPA.Controllers
         }
 
         [HttpPost]
+        /// <summary>
+        /// Tworzenie wizyty - walidacja
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async Task<IActionResult> Create(NewAppointment appointment)
         {
             if (!ModelState.IsValid)
@@ -52,7 +63,11 @@ namespace SPA.Controllers
             await appointmentsService.AddAsync(appointment);
             return RedirectToAction(nameof(Index));
         }
-        //Get: Employees/Edit
+        /// <summary>
+        /// Wybierannie jednej wizyty
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok wybranej wizyty</returns>
         public async Task<IActionResult> Edit(int id)
         {
             var appointmentDetails = await appointmentsService.GetAppointmentByIdAsync(id);
@@ -73,7 +88,12 @@ namespace SPA.Controllers
 
             return View(response);
         }
-
+        /// <summary>
+        /// Metoda - edytowanie wizyty
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="appointment"></param>
+        /// <returns> Zwraca widok wizyty </returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, NewAppointment appointment)
         {
@@ -91,19 +111,31 @@ namespace SPA.Controllers
             await appointmentsService.UpdateAppointmentAsync(appointment);
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Metoda - wyświetl szczegóły wizyty
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegóły </returns>
         public async Task<IActionResult> Details(int id)
         {
             var appointmentDetails = await appointmentsService.GetAppointmentByIdAsync(id);
             return View(appointmentDetails);
         }
-        //Get: Employees/Delete/1
+        /// <summary>
+        /// Metoda - usuń wizytę
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok wizyty</returns>
         public async Task<IActionResult> Delete(int id)
         {
             var appointmentDetails = await appointmentsService.GetAppointmentByIdAsync(id);
             return View(appointmentDetails);
         }
-
+        /// <summary>
+        /// Potwierdzenie usunięcia wizyty
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok wizyt</returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

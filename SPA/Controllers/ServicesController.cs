@@ -16,25 +16,41 @@ namespace SPA.Controllers
 
             servicesService = service;
         }
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async Task<IActionResult> Index()
         {
             var allServices = await servicesService.GetAll();
             return View(allServices);
         }
-
+        /// <summary>
+        /// Metoda - wybieranie pojedynczej kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok wybranej kategorii </returns>
         public async Task<IActionResult> GetByCategoryId(int id)
         {
             var servicesCategory = await servicesService.GetByCategoryId(id);
             return View(servicesCategory);
         }
-
+        /// <summary>
+        /// Metoda - wyświetlanie szczegółów wybranej kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółów wybranej kategorii </returns>
         public async Task<IActionResult> Details(int id)
         {
             var serviceDetails = await servicesService.GetByIdAsync(id);
             if (serviceDetails == null) return View("NotFound");
             return View(serviceDetails);
         }
-
+        /// <summary>
+        /// Metoda - edycja wybranej kategorii
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółów edytowanej kategorii </returns>
         public async Task<IActionResult> Edit(int id)
         {
             var serviceDetails = await servicesService.GetById(id);

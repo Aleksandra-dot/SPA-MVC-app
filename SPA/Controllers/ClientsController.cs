@@ -13,7 +13,10 @@ namespace SPA.Controllers
         {
             clientsService = service;   
         }
-
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async Task<IActionResult> Index()
         {
             var allClients = await clientsService.GetAllAsync();
@@ -30,7 +33,11 @@ namespace SPA.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Metoda - tworzenie profilu klienta
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns> Zwraca widok klienta </returns>
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Name, ProfilePictureUrl, LastName")] Client client)
         {
@@ -43,14 +50,23 @@ namespace SPA.Controllers
 
         }
 
-        //Get: Employees/Edit
+        /// <summary>
+        /// Metoda - widok klienta
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółów o kliencie</returns>
         public async Task<IActionResult> Edit(int id)
         {
             var clientDetails = await clientsService.GetByIdAsync(id);
             if (clientDetails == null) return View("NotFound");
             return View(clientDetails);
         }
-
+        /// <summary>
+        /// Metoda - edycja danych klienta
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="client"></param>
+        /// <returns> Zwraca widok szczegółów danych klienta </returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePictureUrl,Name,LastName")] Client client)
         {
@@ -59,7 +75,11 @@ namespace SPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Get: Clients/Details/1
+        /// <summary>
+        /// Metoda - wyświetlanie szczegółów dotyczących klienta
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółów dotyczących klienta </returns>
         public async Task<IActionResult> Details(int id)
         {
             var clientDetails = await clientsService.GetByIdAsync(id);
@@ -67,7 +87,11 @@ namespace SPA.Controllers
             return View(clientDetails);
         }
 
-        //Get: Clients/Delete/1
+        /// <summary>
+        /// Metoda - usuwanie klienta wraz z jego danymi
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok usuwanych danych </returns>
         public async Task<IActionResult> Delete(int id)
         {
             var clientDetails = await clientsService.GetByIdAsync(id);
@@ -75,6 +99,11 @@ namespace SPA.Controllers
             return View(clientDetails);
         }
 
+        /// <summary>
+        /// Metoda - potwierdzenie usunięcia klienta
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok klientów </returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

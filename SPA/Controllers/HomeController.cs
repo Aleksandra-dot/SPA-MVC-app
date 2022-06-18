@@ -12,7 +12,10 @@ namespace SPA.Controllers
         {
             _logger = logger;
         }
-
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public IActionResult Index()
         {
             return View();
