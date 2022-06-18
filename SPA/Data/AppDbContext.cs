@@ -7,11 +7,18 @@ namespace SPA.Data
 {
     public class AppDbContext: IdentityDbContext<ApplicationUser>
     {
+        /// <summary>
+        /// Konstruktor z parametrem options - dziedziczy po bazowej klasie
+        /// </summary>
+        /// <param name="options"></param>
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
-
+        /// <summary>
+        /// Nadpisywanie metody OnModelCreating - do budowy defaultowych tabel
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Service_Appointment>().HasKey(sa => new
@@ -32,7 +39,9 @@ namespace SPA.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
+        /// <summary>
+        /// Inicjacja modeli
+        /// </summary>
         public DbSet<Service> Services { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Employee> Employees { get; set; }

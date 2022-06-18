@@ -14,6 +14,10 @@ namespace SPA.Controllers
 
             employeesService = service;
         }
+        /// <summary>
+        /// Domyślna akcja kontrolera
+        /// </summary>
+        /// <returns> Zwraca widok </returns>
         public async Task<IActionResult> Index()
         {
             var allEmployees = await employeesService.GetAllAsync();
@@ -26,7 +30,11 @@ namespace SPA.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Metoda - tworzenie pracownika
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns> Zwraca widok dodawanego pracownika </returns>
         [HttpPost]
         public async Task<IActionResult>Create([Bind("Name, ProfilePictureUrl, LastName")]Employee employee)
         {
@@ -39,7 +47,11 @@ namespace SPA.Controllers
 
         }
 
-        //Get: Employees/Edit
+        /// <summary>
+        /// Metoda - edycja szczegółowych danych pracownika
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółowych danych pracownika </returns>
         public async Task<IActionResult> Edit(int id)
         {
             var employeeDetails = await employeesService.GetByIdAsync(id);
@@ -54,7 +66,11 @@ namespace SPA.Controllers
             await employeesService.UpdateAsync(id, employee);
             return RedirectToAction(nameof(Index));
         }
-        //GetL Employees/Details/1
+        /// <summary>
+        /// Metoda - wyświetlanie szczegółowych danych dotyczących pracownika
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok szczegółowych danych dotyczących pracownika </returns>
         public async Task<IActionResult> Details(int id)
         {
             var employeeDetails = await employeesService.GetByIdAsync(id);
@@ -62,14 +78,22 @@ namespace SPA.Controllers
             return View(employeeDetails);
         }
 
-        //Get: Employees/Delete/1
+        /// <summary>
+        /// Metoda - usuwanie pracownika
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca szczegółowe dane usuwanego pracownika </returns>
         public async Task<IActionResult> Delete(int id)
         {
             var employeeDetails = await employeesService.GetByIdAsync(id);
             if (employeeDetails == null) return View("Empty");
             return View(employeeDetails);
         }
-
+        /// <summary>
+        /// Metoda - konfirmacja usunięcia pracownika
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Zwraca widok pracowników </returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
