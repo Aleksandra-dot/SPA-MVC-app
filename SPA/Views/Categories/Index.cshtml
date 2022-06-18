@@ -1,14 +1,11 @@
-﻿@*Define model*@
+﻿
 @model IEnumerable<Category>
 
-@*Define ViewData@**@
 @{
     ViewData["Title"] = "List of categories";
 }
 
 
-
-<h1>Welcome to Categories View</h1>
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
@@ -17,7 +14,7 @@
             <thead>
                 <tr class="text-center">
                     <th> </th>
-                    <th> @Html.DisplayNameFor(model => model.Name)</th>
+                    <th>Name</th>
                     
                 </tr>
 
@@ -53,7 +50,6 @@
 <div style="position: fixed; left: 25px; bottom: 100px;" class="text-white">
         <a asp-controller="Services" asp-action="Index" class="btn btn-outline-primary">
             <i class="bi bi-plus-circle"></i> 
-            
             See all Services
         </a>
 </div>
